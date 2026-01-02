@@ -1,0 +1,103 @@
+# 📚 Perpinfo - Sistem Perpustakaan Digital Modern
+
+Perpinfo adalah aplikasi manajemen perpustakaan berbasis web yang dirancang dengan antarmuka modern, responsif, dan elegan menggunakan **PHP Native** dan **Tailwind CSS**. Sistem ini memudahkan admin dalam mengelola koleksi buku dan anggota, serta memberikan pengalaman meminjam buku yang nyaman bagi anggota.
+
+---
+
+## ✨ Fitur Utama
+
+### 👤 Anggota (Member)
+
+- **Dashboard Personal**: Statistik buku yang sedang dipinjam dan riwayat peminjaman.
+- **Katalog Interaktif**: Pencarian buku berdasarkan judul, pengarang, atau kategori.
+- **Peminjaman Mandiri**: Meminjam buku langsung dari katalog dengan sistem stok otomatis.
+- **Perpanjangan**: Fitur memperpanjang masa pinjam buku dalam satu klik.
+- **Responsive Design**: Akses lancar melalui Smartphone, Tablet, maupun Desktop.
+
+### 🔑 Admin (Pustakawan)
+
+- **Manajemen Dashboard**: Ringkasan statistik (Total Buku, Anggota, Pinjaman Aktif, & Terlambat).
+- **Kelola Buku**: Tambah, edit, hapus buku beserta upload cover buku.
+- **Kelola Anggota**: Verifikasi status anggota (Aktif/Nonaktif) dan manajemen data.
+- **Sirkulasi Otomatis**: Logika pengembalian buku dan update stok otomatis.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Bahasa Pemrograman:** PHP 8.x (Native)
+- **Database:** MySQL / MariaDB
+- **Styling:** Tailwind CSS (via CDN)
+- **Fonts:** Plus Jakarta Sans
+- **Icons:** Heroicons (SVG)
+
+---
+
+## 🚀 Cara Instalasi
+
+1.  **Clone atau Download** repositori ini ke folder server lokal Anda (misal: `htdocs` untuk XAMPP).
+2.  **Impor Database**:
+    - Buka `phpMyAdmin`.
+    - Buat database baru dengan nama `perpustakaan` (atau sesuaikan dengan file `config/database.php`).
+    - Impor file `.sql` yang disediakan.
+3.  **Konfigurasi Database**:
+    - Buka file `config/database.php`.
+    - Sesuaikan `host`, `user`, `password`, dan `database_name`.
+4.  **Tambahkan Kolom Foto** (Jika belum ada):
+    ```sql
+    ALTER TABLE buku ADD COLUMN foto VARCHAR(255) NULL AFTER lokasi_rak;
+    ```
+5.  **Akses Aplikasi**:
+    - Buka browser dan ketik `localhost/perpinfo-main`.
+
+---
+
+## 📁 Struktur Folder Utama
+
+```text
+perpinfo/
+├── admin/              # Dashboard & Fitur Admin
+├── member/             # Dashboard & Fitur Anggota
+├── config/             # Koneksi Database & Fungsi Global
+├── uploads/            # Folder penyimpanan cover buku
+│   └── buku/
+├── .htaccess           # Konfigurasi URL bersih (SEO Friendly)
+├── index.php           # Landing Page
+├── katalog.php         # Katalog Buku Publik
+├── login.php           # Halaman Masuk
+└── register.php        # Halaman Pendaftaran Anggota
+```
+
+---
+
+## 🔒 Catatan Keamanan (Security Notes)
+
+Sistem ini dikembangkan dengan memperhatikan standar keamanan dasar untuk aplikasi berbasis web:
+
+- **Password Hashing**: Menggunakan algoritma `PASSWORD_DEFAULT` (Bcrypt) melalui fungsi `password_hash()` dan `password_verify()`. Password tidak disimpan dalam bentuk teks biasa di database.
+- **SQL Injection Prevention**: Dilengkapi dengan fungsi `escape()` (wrapper untuk `mysqli_real_escape_string`) pada setiap input user untuk membersihkan karakter berbahaya sebelum diproses ke query database.
+- **Session Access Control**: Proteksi halaman berlapis menggunakan `session_start()`. Halaman Admin dan Member dipisahkan secara ketat; pengguna tidak dapat melompati akses tanpa login yang valid.
+- **Secure Authentication**: Menghancurkan session secara total saat logout termasuk pembersihan cookie untuk mencegah pembajakan session (Session Hijacking).
+- **File Upload Validation**: Fitur upload cover buku dilengkapi filter ekstensi (`jpg`, `jpeg`, `png`, `gif`) dan pembatasan ukuran file maksimal 5MB untuk mencegah eksekusi skrip berbahaya.
+
+---
+
+## 📄 Lisensi (License)
+
+Proyek **Perpinfo** ini dilisensikan di bawah:
+
+**MIT License**
+
+Copyright (c) 2026 [Mikummiestu/Perpinfo Team]
+
+Dengan ini diberikan izin, tanpa biaya, kepada siapa pun yang mendapatkan salinan perangkat lunak ini, untuk menggunakan, menyalin, memodifikasi, menggabungkan, mempublikasikan, dan mendistribusikan tanpa batasan, asalkan mencantumkan atribusi penulis asli.
+
+_Perangkat lunak ini disediakan "apa adanya", tanpa jaminan apa pun, tersurat maupun tersirat._
+
+---
+
+**Dibuat dengan ❤️ untuk kemajuan literasi digital.**
+
+```
+
+```
