@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config/database.php';
 
 $total_buku = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM buku"))['total'];
